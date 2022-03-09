@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-
+# DEBUG = True
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 
     'rest_framework',
 
@@ -79,13 +80,8 @@ WSGI_APPLICATION = 'simple_crud.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'netology_simple_crud',
-        'USER': 'netology_simple_crud',
-        'PASSWORD': 'netology_simple_crud',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
@@ -127,11 +123,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# SECRET_KEY = 'the-best-secret-key'
 
 SECRET_KEY = os.getenv('SECRET_KEY', default='the-best-secret-key')
 
 DEBUG = os.getenv('DEBUG', default='True') == 'True'
-
+#
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+#
 ALLOWED_HOSTS = ['*']
