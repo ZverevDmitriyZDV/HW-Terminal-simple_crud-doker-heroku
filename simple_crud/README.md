@@ -1,17 +1,23 @@
 # ШАГИ установки:
 
-1) Копируй данные из репозитория
+2) Создайте и скопируйте файлы преокта в нужную вам дирректорию
 ```shell
     git clone https://github.com/ZverevDmitriyZDV/Terminal-HW2.git
 ```
-3) перейдйи в нужный нам каталог выполненея кода
+
+2) Заполните данные файла .env
+```shell
+    POSTGRES_USER=print_your_user
+    POSTGRES_PASSWORD=print_your_user_password
+    POSTGRES_NAME=print_your_db_name
+```
+3) Перейдите в дирректорию где расположен файл docker-compose.yml и выполните команду
+```shell
+    docker-compose up
+```
+4) Наслождаемся своей непревзойденностью:
 ```shell
 
-```
-4) Создай БД/Юзера/пароль/  внеси информацию в .env файл:
-5) ВЫполни команды по загрузке docker compose
-```shell
-    git clone https://github.com/ZverevDmitriyZDV/Terminal-HW2.git
 ```
 
        

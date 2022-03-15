@@ -6,7 +6,7 @@ services:
       - backend
     image: nginx
     ports:
-      - "80:80"
+      - "8000:80"
     volumes:
       - ./static:/static
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
@@ -15,37 +15,36 @@ services:
       - database
       - migration
       - collectstatic
-    image: dockerhw3
+    image: dockerhw4
     build:
       context: simple_crud
       dockerfile: ./Dockerfile
     env_file:
       - .env
     ports:
-      - 8001:8000
-#    volumes:
-#      - ./static:/app/static
+      - 8000:8000
+    volumes:
+      - ./static:/static
     networks:
       - backend
   collectstatic:
-    image: new_python
+    image: dockerhw4
     build: .
-    command: python manage.py collectstatic --noinput
+    command: python manage.py collectstatic
     volumes:
-      - ./static:./static
+      - ./static:/static
   migration:
-    image: dockerhw3
-#    build: .
+    image: dockerhw4
     command: python manage.py migrate --noinput
     env_file:
       - .env
     depends_on:
-      postgres:
+      database:
         condition: service_healthy
   database:
     image: postgres:11.0-alpine
     environment:
-      DEBUG: 'false'
+      DEBUG: 'True'
     env_file:
       - .env
     volumes:
@@ -57,8 +56,10 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-  volumes:
-    pg-data:
-  networks:
-    backend:
+volumes:
+  pg-data:
+networks:
+  backend:
+
+
 
