@@ -1,11 +1,11 @@
 # ШАГИ установки:
 
-2) Создайте и скопируйте файлы преокта в нужную вам дирректорию
+1) Создайте и скопируйте файлы преокта в нужную вам дирректорию
 ```shell
     git clone https://github.com/ZverevDmitriyZDV/Terminal-HW2.git
 ```
 
-2) Заполните данные файла .env
+2) Заполните данные файла .env и Создайте БД с параметрами из .env 
 ```shell
     POSTGRES_USER=print_your_user
     POSTGRES_PASSWORD=print_your_user_password
