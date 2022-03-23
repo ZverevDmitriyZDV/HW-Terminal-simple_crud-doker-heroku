@@ -8,34 +8,25 @@ services:
       - "5432:5432"
     expose:
       - 5432
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_HOST : 'localhost'
     volumes:
       - ./data/db:/var/lib/postgresql/data
-  migration:
-    image: dockerhw4
-    command: python manage.py migrate --noinput
-    links:
-      - database
-    depends_on:
-      - database
-  collectstatic:
-    image: dockerhw4
-    build: .
-    command: python manage.py collectstatic --noinput
-    volumes:
-      - ./static:/static
   backend:
-    image: dockerhw4
-    build:
-      context: simple_crud
-      dockerfile: ./Dockerfile
+    container_name: backend
     env_file:
-      - .env
+      - ./.env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     ports:
       - "8000:8000"
     volumes:
       - ./static:/static
     depends_on:
-      - migration
+      - database
   nginx:
     image: nginx
     ports:

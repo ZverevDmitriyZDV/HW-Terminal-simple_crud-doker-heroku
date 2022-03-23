@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # TODO: настройте роутер и подключите `ProjectViewSet` и `MeasurementViewSet`
 from rest_framework.routers import DefaultRouter
@@ -30,3 +31,4 @@ urlpatterns = [
     path("data/", include(router.urls)),
 ]
 
+urlpatterns += staticfiles_urlpatterns()
