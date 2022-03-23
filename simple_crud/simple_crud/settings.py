@@ -88,16 +88,21 @@ DATABASES = {
 
     }
 }
+
+print(DATABASES)
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'netology_stocks_products',
-#         'USER': 'netology_stocks_products',
-#         'PASSWORD': 'netology_stocks_products',
-#         'HOST': '127.0.0.1',
+#         'NAME': 'netology_simple_crud',
+#         'USER': 'netology_simple_crud',
+#         'PASSWORD': 'netology_simple_crud',
+#         'HOST': 'localhost',
 #         'PORT': '5432',
+#
 #     }
 # }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
