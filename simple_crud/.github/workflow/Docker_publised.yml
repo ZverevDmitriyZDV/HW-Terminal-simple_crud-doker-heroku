@@ -1,0 +1,24 @@
+name: Docker-published
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      step: actions/checkout@v2
+      name: Login to Heroku Container registry
+      env:
+        HEROKU_API_KEY: ${{secret.HEROKU_API_KEY}}
+      run: heroku container:login
+      name: Build the Docker image
+      run: docker build -t web:latest .
+      env:
+        HEROKU_API_KEY: ${{secret.HEROKU_API_KEY}}
+      run:
+        heroku container:push web --app ${{secret.HEROKU_APP_NAME}}
+        heroku container:release web --app ${{secret.HEROKU_APP_NAME}}
+        heroku ps:scale web=1 -a ${{secret.HEROKU_APP_NAME}}
+
