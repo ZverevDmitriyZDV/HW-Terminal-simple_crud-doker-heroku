@@ -18,7 +18,7 @@ jobs:
       - name: Push the Docker image to Heroku
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-        run:
+        run: |
           heroku container:push web --app ${{secrets.HEROKU_APP_NAME}}
           heroku container:release web --app ${{secrets.HEROKU_APP_NAME}}
           heroku ps:scale web=1 -a ${{secrets.HEROKU_APP_NAME}}
