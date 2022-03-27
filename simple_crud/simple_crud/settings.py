@@ -150,3 +150,5 @@ DEBUG = os.getenv('DEBUG', default='True') == 'True'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #
 ALLOWED_HOSTS = ['*']
+
+django_heroku.settings(locals())
