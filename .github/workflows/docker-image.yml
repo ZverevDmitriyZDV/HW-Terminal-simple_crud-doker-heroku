@@ -11,15 +11,15 @@ jobs:
       - uses: actions/checkout@v2
       - name: Login to Heroku Container registry
         env:
-          HEROKU_API_KEY: ${{secret.HEROKU_API_KEY}}
+          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: heroku container:login
       - name: Build the Docker image
         run: docker build -t web:latest .
       - name: Push the Docker image to Heroku
         env:
-          HEROKU_API_KEY: ${{secret.HEROKU_API_KEY}}
+          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run:
-          heroku container:push web --app ${{secret.HEROKU_APP_NAME}}
-          heroku container:release web --app ${{secret.HEROKU_APP_NAME}}
-          heroku ps:scale web=1 -a ${{secret.HEROKU_APP_NAME}}
+          heroku container:push web --app ${{secrets.HEROKU_APP_NAME}}
+          heroku container:release web --app ${{secrets.HEROKU_APP_NAME}}
+          heroku ps:scale web=1 -a ${{secrets.HEROKU_APP_NAME}}
 
