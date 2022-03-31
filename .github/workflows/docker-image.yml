@@ -15,12 +15,12 @@ jobs:
           HEROKU_APP_NAME: ${{secrets.HEROKU_APP_KEY}}
         run: heroku container:login
       - name: Build the Docker image
-        run: docker build -t my_app ./simple_crud
+        run: docker build -t my_app:latest ./simple_crud
       - name: Push the Docker image to Heroku
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: |
-          heroku container:push my_app --app ${{secrets.HEROKU_APP_NAME}} 
+          heroku container:push my_app:latest --app ${{secrets.HEROKU_APP_NAME}} 
           heroku container:release my_app --app ${{secrets.HEROKU_APP_NAME}}
           heroku ps:scale my_app = 1 -a ${{secrets.HEROKU_APP_NAME}}
 
