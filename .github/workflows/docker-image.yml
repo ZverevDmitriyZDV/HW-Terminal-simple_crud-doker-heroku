@@ -20,7 +20,7 @@ jobs:
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: |
-          heroku container:push web -a=${{secrets.HEROKU_APP_NAME}} --context-path ./simple_crud
+          heroku container:push web -a=${{secrets.HEROKU_APP_NAME}} --context-path=./simple_crud
           heroku container:release web -a=${{secrets.HEROKU_APP_NAME}}
           heroku ps:scale my_app = 1 -a ${{secrets.HEROKU_APP_NAME}}
 
