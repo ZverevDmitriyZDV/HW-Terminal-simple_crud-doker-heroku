@@ -15,7 +15,7 @@ jobs:
           HEROKU_APP_NAME: ${{secrets.HEROKU_APP_KEY}}
         run: heroku container:login
       - name: Build the Docker image
-        run: docker build -t web ./simple-crud
+        run: docker build -t web ./simple_crud
       - name: Push the Docker image to Heroku
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
