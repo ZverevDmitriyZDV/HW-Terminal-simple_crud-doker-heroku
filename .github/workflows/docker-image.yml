@@ -22,6 +22,6 @@ jobs:
           docker tag web:latest registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
           docker push registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
           heroku container:release web -a=${{secrets.HEROKU_APP_NAME}}
-          heroku ps:scale my_app = 1 -a ${{secrets.HEROKU_APP_NAME}}
+          heroku ps:scale web = 1 -a ${{secrets.HEROKU_APP_NAME}}
           heroku stack:set heroku-20
 
