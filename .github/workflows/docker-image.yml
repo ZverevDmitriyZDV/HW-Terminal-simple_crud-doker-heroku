@@ -12,15 +12,15 @@ jobs:
       - name: Login to Heroku Container registry
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-          HEROKU_APP_NAME: ${{secrets.HEROKU_APP_KEY}}
-        run: heroku container:login
+        run: docker login --username _ --password=${{secrets.HEROKU_API_KEY}} registry.heroku.com
       - name: Build the Docker image
         run: docker build -t web ./simple_crud
       - name: Push the Docker image to Heroku
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: |
-          heroku container:push web -a=${{secrets.HEROKU_APP_NAME}} --context-path=./simple_crud --recursive 
+          docker tag web:latest registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
+          docker push registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
           heroku container:release web -a=${{secrets.HEROKU_APP_NAME}}
           heroku ps:scale my_app = 1 -a ${{secrets.HEROKU_APP_NAME}}
 
